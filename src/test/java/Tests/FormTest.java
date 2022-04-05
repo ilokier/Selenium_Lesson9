@@ -3,7 +3,6 @@ package Tests;
 import Pages.FormPage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,7 @@ public class FormTest extends BaseTest {
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     String url = "https://seleniumui.moderntester.pl/form.php";
     private FormPage formPage;
-    // File file = new File("src/main/resources/file.txt");
+
 
     @ParameterizedTest
     @CsvFileSource(resources = "/formData.csv")

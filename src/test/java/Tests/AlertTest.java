@@ -1,25 +1,23 @@
 package Tests;
 
+import Heplers.WaitHelper;
 import Pages.AlertsPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.Duration;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class AlertTest extends BaseTest {
-    private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
+    private static final Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     String url = "https://seleniumui.moderntester.pl/alerts.php";
     String alertTekst;
     Alert al;
+    WaitHelper wait = new WaitHelper();
     private AlertsPage alertsPage;
 
     @BeforeEach
@@ -34,7 +32,6 @@ public class AlertTest extends BaseTest {
         alertsPage.switchToAlert(driver).accept();
         alertTekst = alertsPage.getAlertText(alertsPage.getSimpleMessage());
         assertThat(alertTekst, equalTo("OK button pressed"));
-        al.accept();
     }
 
     @Test
@@ -66,8 +63,7 @@ public class AlertTest extends BaseTest {
     @Test
     public void shouldHandleDelayedAlert() {
         alertsPage.goToAlert(alertsPage.getDelayedAllertButton());
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.alertIsPresent());
+        wait.waitForAlert(driver);
         alertsPage.switchToAlert(driver).accept();
         alertTekst = alertsPage.getAlertText(alertsPage.getDelayedMessage());
         assertThat(alertTekst, equalTo("OK button pressed"));

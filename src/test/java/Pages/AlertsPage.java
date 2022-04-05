@@ -13,12 +13,14 @@ public class AlertsPage extends BaseTest {
 
     @FindBy(id = "simple-alert")
     WebElement simpleAllertButton;
-    @FindBy(id = "prompt-alert")
-    WebElement promptAllertButton;
     @FindBy(id = "simple-alert-label")
     WebElement simpleMessage;
+
+    @FindBy(id = "prompt-alert")
+    WebElement promptAllertButton;
     @FindBy(id = "prompt-label")
     WebElement promptMessage;
+
     @FindBy(id = "confirm-label")
     WebElement confirmMessage;
     @FindBy(id = "confirm-alert")

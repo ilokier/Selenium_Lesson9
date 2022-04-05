@@ -1,12 +1,12 @@
 package Pages;
 
+import Heplers.RandomHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 import java.util.List;
-import java.util.Random;
 
 public class FormPage {
     @FindBy(css = "#inputFirstName3")
@@ -35,6 +35,7 @@ public class FormPage {
     WebElement testFileDownloadButton;
     @FindBy(css = ".btn-primary")
     WebElement signInButton;
+    RandomHelper randomHelper = new RandomHelper();
 
     public WebElement getValidatorMsg() {
         return validatorMsg;
@@ -47,10 +48,10 @@ public class FormPage {
         firstName.sendKeys(firstname);
         lastName.sendKeys(lastname);
         eMail.sendKeys(email);
-        getRandomElement(sex).click();
+        randomHelper.getRandomElement(sex).click();
         age.clear();
-        age.sendKeys(String.valueOf(getRandomInt(100)));
-        getRandomElement(yearsOfExp).click();
+        age.sendKeys(String.valueOf(randomHelper.getRandomInt(100)));
+        randomHelper.getRandomElement(yearsOfExp).click();
         profession.get(prof).click();
         chooseSelectOption(continent, selectContinent);
         chooseSelectOption(value1, seleniumComands);
@@ -62,14 +63,6 @@ public class FormPage {
 
     public void submitForm() {
         signInButton.click();
-    }
-
-    public WebElement getRandomElement(List<WebElement> elements) {
-        return elements.get(new Random().nextInt(elements.size()));
-    }
-
-    public int getRandomInt(int i) {
-        return new Random().nextInt(i);
     }
 
     public void chooseSelectOption(String value, WebElement el) {

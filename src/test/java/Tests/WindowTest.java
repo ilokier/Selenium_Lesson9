@@ -33,7 +33,7 @@ public class WindowTest extends BaseTest {
         String currentUrl = driver.getCurrentUrl();
         log.info("Current url is " + currentUrl);
         assertThat(currentUrl, equalTo("http://automation-practice.emilos.pl/"));
-        //todo: do test with tables
+        //todo: do test with tables after tuesday
         driver.close();
     }
 
@@ -51,7 +51,7 @@ public class WindowTest extends BaseTest {
         String currentUrl = driver.getCurrentUrl();
         log.info("Current url is " + currentUrl);
         assertThat(currentUrl, equalTo("http://automation-practice.emilos.pl/"));
-        //todo: do test with tables
+        //todo: do test with tables after tuesday
         driver.close();
     }
 

@@ -29,12 +29,12 @@ public class BaseTest {
         //ChromeOptions options = new ChromeOptions();
         driver.manage().window().maximize();
         log.info("Window maximized");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
     }
 
-//    @AfterEach
-//    void quit() {
-//        driver.quit();
-//        log.info("driver closed properly");
-//    }
+    @AfterEach
+    void quit() {
+        driver.quit();
+        log.info("driver closed properly");
+    }
 }
