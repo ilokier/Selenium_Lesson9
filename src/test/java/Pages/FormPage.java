@@ -10,31 +10,31 @@ import java.util.List;
 
 public class FormPage {
     @FindBy(css = "#inputFirstName3")
-    WebElement firstName;
+    private WebElement firstName;
     @FindBy(id = "inputLastName3")
-    WebElement lastName;
+    private WebElement lastName;
     @FindBy(css = "#inputEmail3")
-    WebElement eMail;
+    private WebElement eMail;
     @FindBy(id = "inputAge3")
-    WebElement age;
+    private WebElement age;
     @FindBy(id = "gridRadios1")
-    List<WebElement> yearsOfExp;
+    private List<WebElement> yearsOfExp;
     @FindBy(id = "gridRadiosMale")
-    List<WebElement> sex;
+    private List<WebElement> sex;
     @FindBy(css = "[name=gridCheckboxProfession]")
-    List<WebElement> profession;
+    private List<WebElement> profession;
     @FindBy(id = "selectContinents")
-    WebElement selectContinent;
+    private WebElement selectContinent;
     @FindBy(id = "selectSeleniumCommands")
-    WebElement seleniumComands;
+    private WebElement seleniumComands;
     @FindBy(id = "chooseFile")
-    WebElement fileInput;
+    private WebElement fileInput;
     @FindBy(id = "additionalInformations")
-    WebElement additionalInformation;
+    private WebElement additionalInformation;
     @FindBy(css = ".btn-secondary")
-    WebElement testFileDownloadButton;
+    private WebElement testFileDownloadButton;
     @FindBy(css = ".btn-primary")
-    WebElement signInButton;
+    private WebElement signInButton;
     RandomHelper randomHelper = new RandomHelper();
 
     public WebElement getValidatorMsg() {

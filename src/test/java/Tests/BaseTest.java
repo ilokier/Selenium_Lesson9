@@ -26,7 +26,6 @@ public class BaseTest {
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
-        //ChromeOptions options = new ChromeOptions();
         driver.manage().window().maximize();
         log.info("Window maximized");
 

@@ -12,23 +12,21 @@ public class AlertsPage extends BaseTest {
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
 
     @FindBy(id = "simple-alert")
-    WebElement simpleAllertButton;
+    private WebElement simpleAllertButton;
     @FindBy(id = "simple-alert-label")
-    WebElement simpleMessage;
-
+    private WebElement simpleMessage;
     @FindBy(id = "prompt-alert")
-    WebElement promptAllertButton;
+    private WebElement promptAllertButton;
     @FindBy(id = "prompt-label")
-    WebElement promptMessage;
-
+    private WebElement promptMessage;
     @FindBy(id = "confirm-label")
-    WebElement confirmMessage;
+    private WebElement confirmMessage;
     @FindBy(id = "confirm-alert")
-    WebElement confirmAllertButton;
+    private WebElement confirmAllertButton;
     @FindBy(id = "delayed-alert")
-    WebElement delayedAllertButton;
+    private WebElement delayedAllertButton;
     @FindBy(id = "delayed-alert-label")
-    WebElement delayedMessage;
+    private WebElement delayedMessage;
 
 
     public void goToAlert(WebElement el) {

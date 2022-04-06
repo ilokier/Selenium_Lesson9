@@ -8,20 +8,19 @@ import java.util.List;
 
 public class InteractionsPage {
     @FindBy(id = "draggable")
-    WebElement square;
+    private WebElement square;
     @FindBy(id = "droppable")
-    WebElement dropPlace;
-
+    private WebElement dropPlace;
     @FindBy(css = ".ui-resizable-handle")
-    List<WebElement> resizableDirs;
+   private List<WebElement> resizableDirs;
 
     @FindBy(css = ".ui-selectee")
-    List<WebElement> select;
+    private List<WebElement> select;
     @FindBy(css = "#select-result")
-    WebElement feedbackNr;
+    private WebElement feedbackNr;
 
     @FindBy(css = ".ui-sortable-handle")
-    List<WebElement> sortedList;
+    private List<WebElement> sortedList;
 
 
     public List<WebElement> getResizableDirs() {
@@ -38,10 +37,6 @@ public class InteractionsPage {
 
     public WebElement getSquare() {
         return square;
-    }
-
-    public List<WebElement> getSortedList() {
-        return sortedList;
     }
 
     public WebElement getFeedbackNr() {

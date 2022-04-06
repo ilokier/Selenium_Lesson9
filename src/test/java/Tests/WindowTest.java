@@ -3,11 +3,9 @@ package Tests;
 import Pages.WindowHandlePage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 import java.util.Set;
 
@@ -45,8 +43,9 @@ public class WindowTest extends BaseTest {
         assertThat(msg, equalTo("Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization."));
         driver.close();
     }
+
     @Test
-    public void shouldGoToNewBrowserTab(){
+    public void shouldGoToNewBrowserTab() {
         windowHandlePage.switchWindow(windowHandlePage.getNewTabButton(), driver);
         String currentUrl = driver.getCurrentUrl();
         log.info("Current url is " + currentUrl);

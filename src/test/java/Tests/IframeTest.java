@@ -34,6 +34,6 @@ public class IframeTest extends BaseTest {
         formPage.submitForm();
         driver.switchTo().defaultContent();
         log.info("Im on a main frame");
-        assertThat(iFramePage.getBasic().getText(),equalTo("Basic"));
+        assertThat(iFramePage.getBasicText(),equalTo("Basic"));
     }
 }

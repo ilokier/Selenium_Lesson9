@@ -9,11 +9,11 @@ import java.util.Set;
 
 public class WindowHandlePage extends BaseTest {
     @FindBy(id = "newBrowserWindow")
-    WebElement newBrowserButton;
+    private WebElement newBrowserButton;
     @FindBy(id = "newMessageWindow")
-    WebElement newMsgButton;
+    private WebElement newMsgButton;
     @FindBy(id = "newBrowserTab")
-    WebElement newTabButton;
+    private WebElement newTabButton;
 
     public String getMsgWindowBody() {
         return msgWindowBody.getText();
