@@ -4,7 +4,7 @@ import Tests.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProgressBarPage extends BaseTest {
+public class ProgressBarPage {
 
     @FindBy(css = ".ui-progressbar-value")
     WebElement progressBar;

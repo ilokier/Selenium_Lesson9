@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.Set;
 
-public class WindowHandlePage extends BaseTest {
+public class WindowHandlePage {
     @FindBy(id = "newBrowserWindow")
     private WebElement newBrowserButton;
     @FindBy(id = "newMessageWindow")

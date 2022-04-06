@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.List;
 
-public class AcordionPage extends BaseTest {
+public class AcordionPage {
     private static final Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     @FindBy(css = ".ui-accordion-header")
     List<WebElement> accordion;

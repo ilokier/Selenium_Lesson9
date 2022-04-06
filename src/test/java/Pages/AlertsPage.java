@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AlertsPage extends BaseTest {
+public class AlertsPage{
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
 
     @FindBy(id = "simple-alert")

@@ -1,5 +1,6 @@
 package Tests;
 
+import Pages.TablePage;
 import Pages.WindowHandlePage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,12 +18,14 @@ public class WindowTest extends BaseTest {
     String url = "https://seleniumui.moderntester.pl/windows-tabs.php";
     Set<String> allWindows;
     private WindowHandlePage windowHandlePage;
+    private TablePage tablePage;
 
     @BeforeEach
     public void before() {
         driver.get(url);
         String windowHandle = driver.getWindowHandle();
         windowHandlePage = PageFactory.initElements(driver, WindowHandlePage.class);
+        tablePage = PageFactory.initElements(driver, TablePage.class);
     }
 
     @Test
@@ -30,8 +33,10 @@ public class WindowTest extends BaseTest {
         windowHandlePage.switchWindow(windowHandlePage.getNewBrowserButton(), driver);
         String currentUrl = driver.getCurrentUrl();
         log.info("Current url is " + currentUrl);
-        assertThat(currentUrl, equalTo("http://automation-practice.emilos.pl/"));
-        //todo: do test with tables after tuesday
+        driver.navigate().to("https://seleniumui.moderntester.pl/table.php");
+        tablePage.getPeak("Switzerland", 4000);
+        currentUrl = driver.getCurrentUrl();
+        log.info("Current url is: " + currentUrl);
         driver.close();
     }
 
@@ -49,9 +54,11 @@ public class WindowTest extends BaseTest {
         windowHandlePage.switchWindow(windowHandlePage.getNewTabButton(), driver);
         String currentUrl = driver.getCurrentUrl();
         log.info("Current url is " + currentUrl);
-        assertThat(currentUrl, equalTo("http://automation-practice.emilos.pl/"));
-        //todo: do test with tables after tuesday
+        driver.navigate().to("https://seleniumui.moderntester.pl/table.php");
+        tablePage.getPeak("Switzerland", 4000);
+        currentUrl = driver.getCurrentUrl();
+        log.info("Current url is " + currentUrl);
+        assertThat(currentUrl, equalTo("https://seleniumui.moderntester.pl/table.php"));
         driver.close();
     }
-
 }

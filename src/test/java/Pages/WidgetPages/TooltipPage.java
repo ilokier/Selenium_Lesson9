@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
-public class TooltipPage extends BaseTest {
+public class TooltipPage {
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     @FindBy(id = "age")
     WebElement ageInput;

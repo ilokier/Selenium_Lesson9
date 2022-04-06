@@ -9,7 +9,8 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import java.util.List;
 import java.util.Set;
 
@@ -28,11 +29,12 @@ public class ModalTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/modalData.csv")
-    public void shouldCreateNewUser(String name, String email, String password) throws InterruptedException {
+    public void shouldCreateNewUser(String name, String email, String password) {
         driver.get(url);
         windowHandlePage.switchWindow(modalPage.getCreateUserButton(), driver);
         modalPage.createNewUser(name, email, password);
-// TODO: 04.04.2022 get users data from table, assertions after tuesday
-
+        log.info("User data: "+name+", "+email+", "+password);
+        modalPage.getDataFromTable();
+        assertThat(modalPage.getDataFromTable(), equalTo(name));
     }
 }
