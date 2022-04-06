@@ -14,7 +14,6 @@ import static org.hamcrest.Matchers.equalTo;
 public class MenuTest extends BaseTest {
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     String url = "https://seleniumui.moderntester.pl/menu-item.php";
-    WaitHelper wait = new WaitHelper();
     private MenuPage menuPage;
 
     @BeforeEach
@@ -24,15 +23,10 @@ public class MenuTest extends BaseTest {
     }
 
     @Test
-    public void shouldgoToChosenMenuOption() {
-        menuPage.choseMenu(driver, menuPage.getMusic());
-        wait.waitForElVisible(driver, menuPage.getJazz());
-        menuPage.choseMenu(driver, menuPage.getJazz());
-        wait.waitForElVisible(driver, menuPage.getModern());
-        menuPage.choseMenu(driver, menuPage.getModern());
-        String text = menuPage.getTextFromMenuOption(menuPage.getModern());
-        assertThat(text, equalTo("Modern"));
+    public void shouldChooseJazz() {
+        menuPage.choseMusicJazzModern(driver);
     }
 }
+
 
 

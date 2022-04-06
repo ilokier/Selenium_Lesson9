@@ -1,6 +1,6 @@
 package Pages;
 
-import Tests.BaseTest;
+import Heplers.WaitHelper;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,8 +8,10 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AlertsPage{
+public class AlertsPage {
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
+    Alert alert;
+    WaitHelper wait = new WaitHelper();
 
     @FindBy(id = "simple-alert")
     private WebElement simpleAllertButton;
@@ -28,55 +30,52 @@ public class AlertsPage{
     @FindBy(id = "delayed-alert-label")
     private WebElement delayedMessage;
 
-
-    public void goToAlert(WebElement el) {
-        el.click();
-    }
-
     public Alert switchToAlert(WebDriver driver) {
-        Alert alert = driver.switchTo().alert();
+        alert = driver.switchTo().alert();
         return alert;
     }
 
-    public void enterNameToAllert(Alert al, String name) {
-        al.sendKeys(name);
+    public void acceptSimpleAllert(WebDriver driver) {
+        simpleAllertButton.click();
+        switchToAlert(driver).accept();
     }
 
-    public String getAlertText(WebElement el) {
-        return el.getText();
+    public String getSimpleAllertMessage() {
+        return simpleMessage.getText();
     }
 
-    public WebElement getSimpleMessage() {
-        return simpleMessage;
+    public void acceptPromptAllert(WebDriver driver, String name) {
+        promptAllertButton.click();
+        switchToAlert(driver).sendKeys(name);
+        alert.accept();
     }
 
-    public WebElement getPromptMessage() {
-        return promptMessage;
+    public String getPromptAllertMessage() {
+        return promptMessage.getText();
     }
 
-    public WebElement getConfirmMessage() {
-        return confirmMessage;
+    public void acceptConfirmAllert(WebDriver driver) {
+        confirmAllertButton.click();
+        switchToAlert(driver).accept();
     }
 
-    public WebElement getDelayedMessage() {
-        return delayedMessage;
+    public void dissmissConfirmAllert(WebDriver driver) {
+        confirmAllertButton.click();
+        switchToAlert(driver).dismiss();
     }
 
-
-    public WebElement getSimpleAllertButton() {
-        return simpleAllertButton;
+    public String getConfirmAllertMessage() {
+        return confirmMessage.getText();
     }
 
-    public WebElement getPromptAllertButton() {
-        return promptAllertButton;
+    public void acceptDelayAllert(WebDriver driver) {
+        delayedAllertButton.click();
+        wait.waitForAlert(driver);
+        switchToAlert(driver).accept();
     }
 
-    public WebElement getConfirmAllertButton() {
-        return confirmAllertButton;
-    }
-
-    public WebElement getDelayedAllertButton() {
-        return delayedAllertButton;
+    public String getDelayAllertMessage() {
+        return delayedMessage.getText();
     }
 }
 

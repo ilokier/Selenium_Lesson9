@@ -1,6 +1,5 @@
 package Tests.Widgets;
 
-import Heplers.WaitHelper;
 import Pages.WidgetPages.ProgressBarPage;
 import Tests.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class ProgressBarTest extends BaseTest {
     String url = "https://seleniumui.moderntester.pl/progressbar.php";
-    WaitHelper wait = new WaitHelper();
     private ProgressBarPage progressBarPage;
 
     @BeforeEach
@@ -23,8 +21,8 @@ public class ProgressBarTest extends BaseTest {
 
     @Test
     public void afterLoadingProgressBarShouldBeComplete() {
-        wait.waitArributeValue(driver, progressBarPage.getProgressBar(), "class", "ui-progressbar-complete");
-        assertThat(progressBarPage.getProgressBarLabel().getText(), equalTo("Complete!"));
+        String progressbarText = progressBarPage.loadProgressBar(driver);
+        assertThat(progressbarText, equalTo("Complete!"));
     }
 
 }

@@ -1,11 +1,14 @@
 package Pages.WidgetPages;
 
+import Heplers.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class MenuPage {
+    WaitHelper wait = new WaitHelper();
+
     @FindBy(id = "ui-id-9")
     private WebElement music;
     @FindBy(id = "ui-id-13")
@@ -15,24 +18,15 @@ public class MenuPage {
 
     public void choseMenu(WebDriver driver, WebElement element) {
         Actions action = new Actions(driver);
-
+        wait.waitForElVisible(driver, element);
         action.moveToElement(element);
         action.perform();
     }
-
-    public WebElement getMusic() {
-        return music;
+    public void choseMusicJazzModern(WebDriver driver){
+        choseMenu(driver, music);
+        choseMenu(driver, jazz);
+        choseMenu(driver, modern);
+        modern.click();
     }
 
-    public WebElement getJazz() {
-        return jazz;
-    }
-
-    public WebElement getModern() {
-        return modern;
-    }
-
-    public String getTextFromMenuOption(WebElement element) {
-        return element.getText();
-    }
 }
