@@ -2,38 +2,34 @@ package Pages.WidgetPages;
 
 
 import Heplers.WaitHelper;
-import Tests.BaseTest;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
 import java.util.List;
 
 public class AcordionPage {
     private static final Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     @FindBy(css = ".ui-accordion-header")
     List<WebElement> accordion;
-    @FindBy(css = "#accordion p")
+    @FindBy(css = "div>p")
     List<WebElement> accTextTab;
-    WaitHelper wait = new WaitHelper();
 
-    public void clickAccordion() throws InterruptedException {
-        for (WebElement acc : accordion) {
-            acc.click();
-            getAccordionText();
+    public List<WebElement> getAccTextTab() {
+        return accTextTab;
+    }
+
+    public void clickAccordion(int index) {
+        accordion.get(index).click();
+    }
+
+    public String getAccordionText(int index) {
+        int size = accTextTab.size();
+        log.info(String.valueOf(size));
+
+        return accTextTab.get(index).getText();
         }
 
-    }
-    public void getAccordionText(){
-        for (WebElement ac : accTextTab) {
-            String text = ac.getText();
-            log.info(text);
-                    }
-
-    }
 }
 
