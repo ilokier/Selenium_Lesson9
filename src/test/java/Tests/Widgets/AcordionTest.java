@@ -1,6 +1,5 @@
 package Tests.Widgets;
 
-import Heplers.WaitHelper;
 import Pages.WidgetPages.AcordionPage;
 import Tests.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ import static org.hamcrest.Matchers.equalTo;
 public class AcordionTest extends BaseTest {
     private static final Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     String url = "https://seleniumui.moderntester.pl/accordion.php";
-    WaitHelper wait = new WaitHelper();
     private AcordionPage acordionPage;
 
     @BeforeEach
@@ -29,8 +27,7 @@ public class AcordionTest extends BaseTest {
     @CsvFileSource(resources = "/accordionData.csv")
     public void choosingEachTabShouldReturnProperText(int index, int textIndex, String text) {
         acordionPage.clickAccordion(index);
-        wait.waitForElVisible(driver, acordionPage.getAccTextTab().get(textIndex));
-        String accordionTekst = acordionPage.getAccordionText(textIndex);
+        String accordionTekst = acordionPage.getAccordionText(textIndex, driver);
         assertThat(accordionTekst, equalTo(text));
     }
 }

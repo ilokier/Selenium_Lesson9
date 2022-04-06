@@ -27,9 +27,9 @@ public class BaseTest {
 
     }
 
-    @AfterEach
-    void quit() {
-        driver.quit();
-        log.info("driver closed properly");
-    }
+//    @AfterEach
+//    void quit() {
+//        driver.quit();
+//        log.info("driver closed properly");
+//    }
 }

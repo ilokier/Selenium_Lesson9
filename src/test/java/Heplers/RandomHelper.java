@@ -12,14 +12,14 @@ public class RandomHelper {
     }
 
     public WebElement getRandomElement(List<WebElement> elements) {
-        WebElement el = elements.get(new Random().nextInt(elements.size()));
-        return el;
+        return elements.get(new Random().nextInt(elements.size()));
     }
+
     public int getRandomSelectOption(Select sel) {
         int size = sel.getOptions().size();
-        Random random = new Random();
-        return random.nextInt(size);
+        return new Random().nextInt(size);
     }
+
     public int getRandomInt(int i) {
         return new Random().nextInt(i);
     }
