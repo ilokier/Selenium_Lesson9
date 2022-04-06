@@ -1,37 +1,38 @@
 package Tests.Widgets;
 
+import Heplers.WaitHelper;
+import Pages.WidgetPages.MenuPage;
 import Tests.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 public class MenuTest extends BaseTest {
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     String url = "https://seleniumui.moderntester.pl/menu-item.php";
-
+    WaitHelper wait = new WaitHelper();
+    private MenuPage menuPage;
 
     @BeforeEach
     public void before() {
         driver.get(url);
+        menuPage = PageFactory.initElements(driver, MenuPage.class);
     }
 
     @Test
     public void shouldgoToChosenMenuOption() {
-        List<WebElement> menu = driver.findElements(By.cssSelector("#menu>li"));
-        Actions action = new Actions(driver);
-        action.moveToElement(menu.get(5));
-        action.perform();
-//todo finish
-
+        menuPage.choseMenu(driver, menuPage.getMusic());
+        wait.waitForElVisible(driver, menuPage.getJazz());
+        menuPage.choseMenu(driver, menuPage.getJazz());
+        wait.waitForElVisible(driver, menuPage.getModern());
+        menuPage.choseMenu(driver, menuPage.getModern());
+        String text = menuPage.getTextFromMenuOption(menuPage.getModern());
+        assertThat(text, equalTo("Modern"));
     }
-
-
 }
 
 
