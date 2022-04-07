@@ -20,7 +20,7 @@ public class FormTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/formData.csv")
-     public void shouldFillFormWithSuccess(String firstName, String lastName, String email, int prof, String continent, String value1, String value2, String expectedMsg, File file) {
+    public void shouldFillFormWithSuccess(String firstName, String lastName, String email, int prof, String continent, String value1, String value2, String expectedMsg, File file) {
         formPage = PageFactory.initElements(driver, FormPage.class);
         driver.get(url);
         formPage.fillForm(firstName, lastName, email, prof, continent, value1, value2, file);

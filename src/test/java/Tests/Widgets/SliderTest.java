@@ -3,9 +3,7 @@ package Tests.Widgets;
 import Pages.WidgetPages.SliderPage;
 import Tests.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.openqa.selenium.interactions.Actions;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +23,13 @@ public class SliderTest extends BaseTest {
         sliderPage = PageFactory.initElements(driver, SliderPage.class);
     }
 
-    @ParameterizedTest
-    @CsvSource({"545, 50", "873, 80", "873, 80", "212, 20", "0, 0"})
-    public void shouldMoveSlider(int x, String expectedValue) {
-        Actions action = new Actions(driver);
-        action.moveToElement(sliderPage.getSliderHandle(), x, 0).click().perform();
-        log.info("Expected value is" + expectedValue);
-        assertThat(sliderPage.getPositionValue(), equalTo(expectedValue));
-        // TODO: 07.04.2022 make arrows, not pixels
+    @Test
+    public void shouldMoveSliderToGivenValue() {
+        sliderPage.setSliderPosition(driver, 50);
+        sliderPage.setSliderPosition(driver, 80);
+        sliderPage.setSliderPosition(driver, 80);
+        sliderPage.setSliderPosition(driver, 20);
+        sliderPage.setSliderPosition(driver, 0);
+        assertThat(sliderPage.getPositionValue(), equalTo(0));
     }
-
 }

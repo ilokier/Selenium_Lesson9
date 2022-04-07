@@ -26,7 +26,7 @@ public class InteractionsTest extends BaseTest {
     @BeforeEach
     public void before() {
         interactionsPage = PageFactory.initElements(driver, InteractionsPage.class);
-         action = new Actions(driver);
+        action = new Actions(driver);
     }
 
     @ParameterizedTest
@@ -37,6 +37,7 @@ public class InteractionsTest extends BaseTest {
         driver.get(dragUrl);
         action.dragAndDropBy(interactionsPage.getSquare(), x, y).perform();
         log.info("I drag square to the " + direction);
+        // TODO: 07.04.2022 add arrows, not pixels 
     }
 
     @Test
