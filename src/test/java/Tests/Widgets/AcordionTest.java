@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class AcordionTest extends BaseTest {
-    private static final Logger log = LoggerFactory.getLogger("PageTitleTest.class");
+    private static final Logger log = LoggerFactory.getLogger("AcordionTest.class");
     String url = "https://seleniumui.moderntester.pl/accordion.php";
     private AcordionPage acordionPage;
 

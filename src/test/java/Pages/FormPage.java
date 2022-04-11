@@ -1,8 +1,11 @@
 package Pages;
 
 import Heplers.RandomHelper;
+import Heplers.WaitHelper;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
@@ -22,7 +25,7 @@ public class FormPage {
     @FindBy(id = "gridRadiosMale")
     private List<WebElement> sex;
     @FindBy(css = "[name=gridCheckboxProfession]")
-    private List<WebElement> profession;
+    private List<WebElement> professionList;
     @FindBy(id = "selectContinents")
     private WebElement selectContinent;
     @FindBy(id = "selectSeleniumCommands")
@@ -35,29 +38,71 @@ public class FormPage {
     private WebElement testFileDownloadButton;
     @FindBy(css = ".btn-primary")
     private WebElement signInButton;
-    RandomHelper randomHelper = new RandomHelper();
-
-    public WebElement getValidatorMsg() {
-        return validatorMsg;
-    }
-
     @FindBy(id = "validator-message")
     WebElement validatorMsg;
+    RandomHelper randomHelper = new RandomHelper();
+    WaitHelper wait = new WaitHelper();
 
-    public FormPage fillForm(String firstname, String lastname, String email, int prof, String continent, String value1, String value2, File file) {
+
+    public FormPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
+
+    public String getValidatorMsg() {
+        return validatorMsg.getText();
+    }
+
+    public FormPage setFirstName(String firstname) {
         firstName.sendKeys(firstname);
-        lastName.sendKeys(lastname);
-        eMail.sendKeys(email);
-        randomHelper.getRandomElement(sex).click();
-        age.clear();
-        age.sendKeys(String.valueOf(randomHelper.getRandomInt(100)));
-        randomHelper.getRandomElement(yearsOfExp).click();
-        profession.get(prof).click();
-        chooseSelectOption(continent, selectContinent);
-        chooseSelectOption(value1, seleniumComands);
-        chooseSelectOption(value2, seleniumComands);
-        fileInput.sendKeys(file.getAbsolutePath());
+        return this;
+    }
 
+    public FormPage setLastName(String lastname) {
+        lastName.sendKeys(lastname);
+        return this;
+    }
+
+    public FormPage setEmail(String email) {
+        eMail.sendKeys(email);
+        return this;
+    }
+
+    public FormPage chooseSex() {
+        randomHelper.getRandomElement(sex).click();
+        return this;
+    }
+
+    public FormPage setAge(String age) {
+        this.age.clear();
+        this.age.sendKeys(age);
+        return this;
+    }
+
+    public FormPage chooseExperience() {
+        randomHelper.getRandomElement(yearsOfExp).click();
+        return this;
+    }
+
+    public FormPage chooseProfession(int proffesionIndex) {
+        professionList.get(1).click();
+        return this;
+    }
+
+    public FormPage selectContinent(String continent) {
+        chooseSelectOption(continent, selectContinent);
+        return this;
+    }
+
+    public FormPage attachFile(String path) {
+        File file = new File(path);
+        fileInput.sendKeys(file.getAbsolutePath());
+        return this;
+    }
+
+    public FormPage selectSeleniumComands(WebDriver driver, String seleniumCommand1, String seleniumCommand2) {
+        wait.waitForElVisible(driver, seleniumComands);
+        chooseSelectOption(seleniumCommand1, seleniumComands);
+        chooseSelectOption(seleniumCommand2, seleniumComands);
         return this;
     }
 

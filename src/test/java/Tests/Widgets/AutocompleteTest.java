@@ -1,6 +1,5 @@
 package Tests.Widgets;
 
-import Heplers.RandomHelper;
 import Pages.WidgetPages.AutocompletePage;
 import Tests.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +16,6 @@ public class AutocompleteTest extends BaseTest {
     private static Logger log = LoggerFactory.getLogger("PageTitleTest.class");
     String url = "https://seleniumui.moderntester.pl/autocomplete.php";
     private AutocompletePage autocompletePage;
-    private RandomHelper randomHelper = new RandomHelper();
 
     @BeforeEach
     public void before() {

@@ -23,14 +23,10 @@ public class DataPickerTest extends BaseTest {
 
     @Test
     public void shouldPassChosenDateToInput() {
-        //  dataPickerPage.getTodayDate();
-        dataPickerPage.getChosendate(driver, 2022, 5, 20);
-        dataPickerPage.getChosendate(driver, 2023, 5, 20);
-
-        // dataPickerPage.getChosendate(driver, 2022, 6, 22);
+        dataPickerPage.getTodayDate();
+        dataPickerPage.getChosendate(driver, 2022, 7, 20);
 
         // TODO: 01.04.2022 finish
     }
-
 }
 

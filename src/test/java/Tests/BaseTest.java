@@ -24,12 +24,11 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         log.info("Window maximized");
-
     }
 
-//    @AfterEach
-//    void quit() {
-//        driver.quit();
-//        log.info("driver closed properly");
-//    }
+    @AfterEach
+    void quit() {
+        driver.quit();
+        log.info("driver closed properly");
+    }
 }

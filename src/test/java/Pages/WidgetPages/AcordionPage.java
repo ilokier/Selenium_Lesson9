@@ -29,9 +29,8 @@ public class AcordionPage {
         int size = accTextTab.size();
         wait.waitForElVisible(driver, getAccTextTab().get(index));
         log.info(String.valueOf(size));
-
         return accTextTab.get(index).getText();
-        }
+    }
 
 }
 

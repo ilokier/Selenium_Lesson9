@@ -30,6 +30,23 @@ public class DataPickerPage {
     @FindBy(css = "td:not(.ui-datepicker-other-month) .ui-state-default")
     List<WebElement> defaultDaysOfCurrentMonth;
 
+//    public int getTodayYear() {
+//        int year = Calendar.getInstance().get(Calendar.YEAR);
+//        log.info("Year is: " + year);
+//        return year;
+//    }
+//
+//    public int getTodayMonth() {
+//        int month = Calendar.getInstance().get(Calendar.MONTH);
+//        log.info("Month: " + month);
+//        return month;
+//    }
+//
+//    public int getTodayDay() {
+//        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+//        log.info("Day: " + day);
+//        return day;
+//    }
 
     public int getCallendarActualYear(WebDriver driver) {
         wait.waitForElVisible(driver, actualVisibleYear);
@@ -59,44 +76,56 @@ public class DataPickerPage {
             String text = day.getText();
             int dayValue = Integer.parseInt(text);
             if (dayValue == (chosenDay)) {
-                //log.info(day.getText());
                 day.click();
             }
         }
     }
 
-    public void goToNextMonth() {
-        nextMontharrow.click();
-    }
-
-    public void goToPrevtMonth() {
-        prevMontharrow.click();
-    }
-
     public void getChosendate(WebDriver driver, int year, int month, int chosenDay) {
         clickOnInput();
-        if (getCallendarActualYear(driver) == (year) & getCallendarActualMonth(driver) == (month)) {
-        } else goToChosenDate(driver, year, month);
+        while (true) {
+            if (getCallendarActualYear(driver) == (year) & getCallendarActualMonth(driver) == (month)) {
+                break;
+            } else {
+                checkYear(driver, year, month, chosenDay);
+            }
+        }
         pickAday(driver, chosenDay);
     }
 
-    public void goToChosenDate(WebDriver driver, int year, int month) {
-        if (getCallendarActualYear(driver) < year) {
-            nextMontharrow.click();
-        } else if (getCallendarActualYear(driver) > year) {
-            prevMontharrow.click();
+    public void checkYear(WebDriver driver, int year, int month, int chosenDay) {
+        while (true) {
+            if (getCallendarActualYear(driver) == year) {
+                break;
+            } else if (getCallendarActualYear(driver) < year) {
+                wait.waitForElVisible(driver, nextMontharrow);
+                nextMontharrow.click();
+            } else {
+                prevMontharrow.click();
+            }
+
         }
-        checkMonth(driver, month);
+        checkMonth(driver, month, chosenDay);
+
+
     }
 
-    public void checkMonth(WebDriver driver, int month) {
-        if ((getCallendarActualMonth(driver)) < (month)) {
-            nextMontharrow.click();
-        } else if (getCallendarActualMonth(driver) < month) {
-            prevMontharrow.click();
-        }
+    public void checkMonth(WebDriver driver, int month, int chosenDay) {
+        while (true) {
+            if ((getCallendarActualMonth(driver)) == (month)) {
+                break;
+            } else if ((getCallendarActualMonth(driver)) < (month)) {
+                wait.waitForElVisible(driver, nextMontharrow);
+                nextMontharrow.click();
 
+            } else {
+                wait.waitForElVisible(driver, prevMontharrow);
+                prevMontharrow.click();
+            }
+            break;
+        }
     }
+
 
     public int castStringToInt(String month) {
         switch (month) {
